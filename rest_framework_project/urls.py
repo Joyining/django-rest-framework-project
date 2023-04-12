@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import Product
+from .views import ProductView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('', Product.as_view(), name='product'),
+    path('', ProductView.as_view(), name='product'),
 ]

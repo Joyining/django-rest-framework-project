@@ -5,13 +5,11 @@ from my_app.serializers import ProductSerializer
 from my_app.models import Product
 
 
-class Product(APIView):
+class ProductView(APIView):
     def get(self, request, *args, **kwargs):
-        data = {
-            'name': 'White jacket',
-            'in_stock': 99,
-        }
-        return Response(data)
+        query_set = Product.objects.all()
+        serializer = ProductSerializer(query_set, many=True)
+        return Response(serializer.data)
 
     def post(self, request, *args, **kwargs):
         serializer = ProductSerializer(data=request.data)
